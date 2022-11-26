@@ -1,10 +1,9 @@
-import ru.apshheko.buildsrc.androidTestImplementations
+import ru.apshheko.buildsrc.deps
 import ru.apshheko.buildsrc.config.Apps
-import ru.apshheko.buildsrc.implementations
-import ru.apshheko.buildsrc.testImplementations
 import ru.apshheko.buildsrc.config.Libs.coreDep
 import ru.apshheko.buildsrc.config.Libs.coreTestDep
 import ru.apshheko.buildsrc.config.Libs.coreUITestDep
+import ru.apshheko.buildsrc.dependencies
 
 plugins {
     id("com.android.library")
@@ -44,8 +43,14 @@ android {
     }
 }
 
-dependencies {
-    implementations(coreDep)
-    testImplementations(coreTestDep)
-    androidTestImplementations(coreUITestDep)
-}
+dependencies(
+    implementations = deps(
+        coreDep,
+    ),
+    testImplementations = deps(
+        coreTestDep
+    ),
+    androidTestImplementations = deps(
+        coreUITestDep
+    )
+)
