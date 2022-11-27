@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import ru.apshheko.designsystem.ComposeActivityTheme
 import ru.apshheko.video_player_screen.di.VideoPlayerScreenFeature
+import ru.apshheko.video_player_screen.presentation.state.UiEffect
 import ru.apshheko.video_player_screen.presentation.state.UiState
 import ru.apshheko.video_player_screen.presentation.viewmodel.VideoPlayerScreenViewModel
 import javax.inject.Inject
@@ -44,7 +45,10 @@ class VideoPlayerScreen : ComponentActivity() {
     private fun SetVideoPlayerScreenState(state: UiState) {
         when (state) {
             is UiState.Initialization -> {}
-            is UiState.VideoPlayerScreen -> VideoPlayerScreenView(state.fileUrl)
+            is UiState.VideoPlayerScreen -> VideoPlayerScreenView(
+                videoPlayerScreenModel = state.videoPlayerScreenModel,
+                onClickPoster = { viewModel.onClickPoster(it) }
+            )
         }
     }
 }

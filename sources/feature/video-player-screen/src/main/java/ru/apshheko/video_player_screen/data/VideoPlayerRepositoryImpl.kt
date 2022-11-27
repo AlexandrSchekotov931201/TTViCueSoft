@@ -5,9 +5,9 @@ import ru.apshheko.video_player_screen.data.api.response.VideoResponse
 import javax.inject.Inject
 
 class VideoPlayerRepositoryImpl @Inject constructor(
-    private val requestApi: RequestApi
+    private val api: RequestApi
 ) : VideoPlayerRepository{
     override suspend fun getVideo(): List<VideoResponse>? {
-        return requestApi.getVideo().body()
+        return api.getVideo().body()
     }
 }

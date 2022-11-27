@@ -1,13 +1,14 @@
 package ru.apshheko.video_player_screen.presentation.view
 
-import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,40 +19,29 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import ru.apshheko.video_player_screen.presentation.model.Poster
+import ru.apshheko.video_player_screen.presentation.model.VideoPlayerScreenModel
 
 @Composable
 fun VideoPlayerScreenView(
-    fileUrl: String
+    videoPlayerScreenModel: VideoPlayerScreenModel,
+    onClickPoster: (fileUrl: String) -> Unit
 ) {
     Column {
-        VideoPlayer(
-            fileUrl,
-            Modifier
-                .padding(start = 8.dp, end = 8.dp, top = 167.dp)
-                .fillMaxWidth()
-                .height(208.dp)
-                .clip(RoundedCornerShape(15.dp))
-        )
-        Button(
-            Modifier
-                .padding(top = 44.dp)
-                .size(144.dp, 46.dp)
-                .align(Alignment.CenterHorizontally)
-        )
-        Posters(
-            listOf("One", "Two", "Three", "Four", "Five", "Six", "Seven"),
-            Modifier
-                .padding(top = 24.dp)
-                .height(360.dp)
-                .background(Color.Gray)
-        )
+        VideoPlayer(videoPlayerScreenModel.fileUrlForShow)
+        ButtonView(Modifier.align(Alignment.CenterHorizontally))
+        Posters(videoPlayerScreenModel.posters, onClickPoster)
     }
 }
 
 @Composable
-private fun VideoPlayer(fileUrl: String, modifier: Modifier) {
+private fun VideoPlayer(fileUrl: String) {
     AndroidView(
-        modifier = modifier,
+        modifier = Modifier
+            .padding(start = 8.dp, end = 8.dp, top = 167.dp)
+            .fillMaxWidth()
+            .height(208.dp)
+            .clip(RoundedCornerShape(15.dp)),
         factory = { context ->
             StyledPlayerView(context).apply {
                 player = ExoPlayer.Builder(context).build()
@@ -63,13 +53,29 @@ private fun VideoPlayer(fileUrl: String, modifier: Modifier) {
                     play()
                 }
             }
-        })
+        },
+        update = { view ->
+            view.apply {
+                player?.apply {
+                    stop()
+                    repeat(mediaItemCount) {
+                        removeMediaItem(it)
+                    }
+                    addMediaItem(MediaItem.fromUri(fileUrl))
+                    prepare()
+                    play()
+                }
+            }
+        }
+    )
 }
 
 @Composable
-private fun Button(modifier: Modifier) {
-    androidx.compose.material.Button(
-        modifier = modifier,
+private fun ButtonView(modifier: Modifier) {
+    Button(
+        modifier = modifier
+            .padding(top = 44.dp)
+            .size(144.dp, 46.dp),
         onClick = {}
     ) {
         Text(text = "TEXT")
@@ -77,12 +83,17 @@ private fun Button(modifier: Modifier) {
 }
 
 @Composable
-private fun Posters(itemsDammy: List<String>, modifier: Modifier) {
-    Box(modifier = modifier) {
+private fun Posters(posters: List<Poster>, onClickPoster: (fileUrl: String) -> Unit) {
+    Box(
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .height(360.dp)
+            .background(Color.Gray)
+    ) {
         LazyRow(
             modifier = Modifier.align(Alignment.Center),
         ) {
-            itemsIndexed(itemsDammy) { index, item ->
+            items(posters) { item ->
                 Box(
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
@@ -91,8 +102,9 @@ private fun Posters(itemsDammy: List<String>, modifier: Modifier) {
                     Text(
                         modifier = Modifier
                             .size(70.dp, 70.dp)
-                            .background(Color.Black),
-                        text = item
+                            .background(Color.Black)
+                            .clickable { onClickPoster.invoke(item.fileUrl) },
+                        text = item.fileUrl.substring(0, 5)
                     )
                 }
             }
