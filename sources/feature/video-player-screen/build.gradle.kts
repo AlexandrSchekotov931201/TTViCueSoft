@@ -2,7 +2,6 @@ import ru.apshheko.buildsrc.*
 import ru.apshheko.buildsrc.Libs.Coroutines.coroutinesDep
 import ru.apshheko.buildsrc.Libs.ExoPlayer.exoPlayerDep
 import ru.apshheko.buildsrc.Libs.Retrofit.retrofitDep
-import ru.apshheko.buildsrc.Libs.RxJava.rxJavaDep
 import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep

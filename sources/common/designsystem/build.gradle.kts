@@ -53,6 +53,7 @@ android {
 
 dependencies(
     compose = true,
+    glide = true,
     implementations = deps(
         coreDep,
     ),

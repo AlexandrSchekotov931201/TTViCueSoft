@@ -1,5 +1,6 @@
 package ru.apshheko.video_player_screen.presentation.view
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import ru.apshheko.designsystem.view.GlideImage
 import ru.apshheko.video_player_screen.presentation.model.Poster
 import ru.apshheko.video_player_screen.presentation.model.VideoPlayerScreenModel
 
@@ -98,13 +100,12 @@ private fun Posters(posters: List<Poster>, onClickPoster: (fileUrl: String) -> U
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .clip(RoundedCornerShape(5.dp))
+                        .clickable { onClickPoster.invoke(item.fileUrl) }
                 ) {
-                    Text(
+                    GlideImage(
+                        item.posterUrl,
                         modifier = Modifier
                             .size(70.dp, 70.dp)
-                            .background(Color.Black)
-                            .clickable { onClickPoster.invoke(item.fileUrl) },
-                        text = item.fileUrl.substring(0, 5)
                     )
                 }
             }

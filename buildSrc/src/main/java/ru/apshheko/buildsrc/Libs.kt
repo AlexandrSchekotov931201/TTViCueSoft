@@ -67,23 +67,18 @@ object Libs {
         )
     }
 
-    object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxjavaVersion}"
-        const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxjavaAndroidVersion}"
-
-        val rxJavaDep = listOf(
-            rxJava,
-            rxJavaAndroid
-        )
-    }
-
     object Coroutines {
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
-        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersions}"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersions}"
 
         val coroutinesDep = listOf(
             coroutinesCore,
             coroutinesAndroid
         )
+    }
+
+    object Glide {
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersions}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glideVersions}"
     }
 }

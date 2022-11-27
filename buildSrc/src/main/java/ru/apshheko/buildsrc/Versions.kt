@@ -10,8 +10,8 @@ object Versions {
     const val exoPlayerVersion = "2.18.1"
     const val daggerVersion = "2.44"
     const val retrofitVersion = "2.9.0"
-    const val rxjavaVersion = "2.2.2"
-    const val rxjavaAndroidVersion = "2.1.1"
+    const val coroutinesVersions = "1.6.0"
+    const val glideVersions = "4.14.2"
 
     // Tests
     const val junitVersion = "4.13.2"

@@ -6,12 +6,14 @@ import org.gradle.kotlin.dsl.dependencies
 
 fun Project.dependencies(
     compose: Boolean = false,
+    glide: Boolean = false,
     implementations: List<List<String>>? = null,
     testImplementations: List<List<String>>? = null,
     androidTestImplementations: List<List<String>>? = null,
     modules: List<String>? = null
 ) {
     dependencies {
+        implementationsGlide(glide)
         implementationsCompose(compose)
         implementationsDagger()
         implementations?.forEach { implementations(it) }
@@ -31,4 +33,11 @@ private fun DependencyHandler.implementationsCompose(isNeed: Boolean) {
 private fun DependencyHandler.implementationsDagger() {
     implementation(Libs.Dagger.daggerAndroid)
     kapt (Libs.Dagger.daggerCompiler)
+}
+
+private fun DependencyHandler.implementationsGlide(isNeed: Boolean) {
+    if (isNeed) {
+        implementation(Libs.Glide.glide)
+        kapt (Libs.Glide.glideCompiler)
+    }
 }
