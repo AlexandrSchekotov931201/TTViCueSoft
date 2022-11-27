@@ -1,4 +1,4 @@
-package ru.apshheko.video_player_screen
+package ru.apshheko.video_player_screen.presentation.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
