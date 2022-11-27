@@ -9,7 +9,7 @@
         android:theme="@style/Theme.TTViCueSoft"
         tools:targetApi="32">
         <activity
-            android:name="ru.apshheko.video_player_screen.MainActivity"
+            android:name="ru.apshheko.video_player_screen.presentation.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
