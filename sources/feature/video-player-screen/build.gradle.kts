@@ -1,13 +1,11 @@
+import ru.apshheko.buildsrc.*
 import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
-import ru.apshheko.buildsrc.Apps
-import ru.apshheko.buildsrc.Modules.videoPlayerScreen
-import ru.apshheko.buildsrc.dependencies
-import ru.apshheko.buildsrc.deps
+import ru.apshheko.buildsrc.Modules.designsystem
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
@@ -17,17 +15,14 @@ repositories {
 }
 
 android {
-
     compileSdk = Apps.compileSdk
 
     defaultConfig {
-        applicationId = Apps.applicationId
         minSdk = Apps.minSdk
         targetSdk = Apps.targetSdk
-        versionCode = Apps.versionCode
-        versionName = Apps.versionName
 
         testInstrumentationRunner = Apps.testInstrumentationRunner
+        consumerProguardFiles(Apps.consumerRules)
     }
 
     buildTypes {
@@ -45,14 +40,16 @@ android {
     kotlinOptions {
         jvmTarget = Apps.jvmTarget
     }
-    packagingOptions {
-        resources {
-            excludes += Apps.packagingOptionsExcludes
-        }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtensionVersion
     }
 }
 
 dependencies(
+    compose = true,
     implementations = deps(
         coreDep
     ),
@@ -63,6 +60,6 @@ dependencies(
         coreUITestDep
     ),
     modules = deps(
-        videoPlayerScreen
+        designsystem
     )
 )

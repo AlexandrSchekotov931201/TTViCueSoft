@@ -2,8 +2,8 @@ package ru.apshheko.buildsrc
 
 object Modules {
     //Common
-    const val commonExample = "common-example"
+    const val designsystem = "designsystem"
 
     //Feature
-    const val featureExample = "feature-example"
+    const val videoPlayerScreen = "video-player-screen"
 }
