@@ -4,10 +4,12 @@ import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
 import ru.apshheko.buildsrc.dependencies
 import ru.apshheko.buildsrc.Apps
+import ru.apshheko.buildsrc.Modules.baseApp
 
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 repositories {
@@ -59,5 +61,8 @@ dependencies(
     ),
     androidTestImplementations = deps(
         coreUITestDep
+    ),
+    modules = deps(
+        baseApp
     )
 )

@@ -2,13 +2,15 @@ import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
 import ru.apshheko.buildsrc.Apps
+import ru.apshheko.buildsrc.Modules.baseApp
 import ru.apshheko.buildsrc.Modules.videoPlayerScreen
 import ru.apshheko.buildsrc.dependencies
 import ru.apshheko.buildsrc.deps
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 repositories {
@@ -63,6 +65,7 @@ dependencies(
         coreUITestDep
     ),
     modules = deps(
+        baseApp,
         videoPlayerScreen
     )
 )

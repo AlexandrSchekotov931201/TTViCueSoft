@@ -43,12 +43,17 @@ object Libs {
     }
 
     object ExoPlayer {
-        const val exoPlayer = "com.google.android.exoplayer:exoplayer:${Versions.exoPlayer}"
-        const val exoPlayerUI = "com.google.android.exoplayer:exoplayer-ui:${Versions.exoPlayer}"
+        const val exoPlayer = "com.google.android.exoplayer:exoplayer:${Versions.exoPlayerVersion}"
+        const val exoPlayerUI = "com.google.android.exoplayer:exoplayer-ui:${Versions.exoPlayerVersion}"
 
         val exoPlayerDep = listOf(
             exoPlayer,
             exoPlayerUI
         )
+    }
+
+    object Dagger {
+        const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.daggerVersion}"
+        const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     }
 }

@@ -19,10 +19,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import ru.apshheko.baseapp.di.BaseFeature
 import ru.apshheko.designsystem.ComposeActivityTheme
+import ru.apshheko.video_player_screen.di.VideoPlayerScreenFeature
+import ru.apshheko.video_player_screen.domain.VideoPlayerInteractor
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @set:Inject
+    var interactor: VideoPlayerInteractor? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        VideoPlayerScreenFeature.videoPlayerScreenComponent?.inject(this)
         super.onCreate(savedInstanceState)
         setContent {
             ComposeActivityTheme {

@@ -1,10 +1,10 @@
-import ru.apshheko.buildsrc.*
-import ru.apshheko.buildsrc.Libs.ExoPlayer.exoPlayerDep
 import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
-import ru.apshheko.buildsrc.Modules.baseApp
-import ru.apshheko.buildsrc.Modules.designSystem
+import ru.apshheko.buildsrc.dependencies
+import ru.apshheko.buildsrc.deps
+import ru.apshheko.buildsrc.Apps
+import ru.apshheko.buildsrc.Modules.videoPlayerScreen
 
 plugins {
     id("com.android.library")
@@ -43,28 +43,16 @@ android {
     kotlinOptions {
         jvmTarget = Apps.jvmTarget
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtensionVersion
-    }
 }
 
 dependencies(
-    compose = true,
     implementations = deps(
-        coreDep,
-        exoPlayerDep
+        coreDep
     ),
     testImplementations = deps(
         coreTestDep
     ),
     androidTestImplementations = deps(
         coreUITestDep
-    ),
-    modules = deps(
-        baseApp,
-        designSystem
     )
 )
