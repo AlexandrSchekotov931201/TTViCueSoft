@@ -56,4 +56,26 @@ object Libs {
         const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.daggerVersion}"
         const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     }
+
+    object Retrofit {
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
+        const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConvertorGsonVersion}"
+        const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava:${Versions.retrofitAdapterVersion}"
+
+        val retrofitDep = listOf(
+            retrofit,
+            retrofitConverterGson,
+            retrofitAdapter
+        )
+    }
+
+    object RxJava {
+        const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxjavaVersion}"
+        const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxjavaAndroidVersion}"
+
+        val rxJavaDep = listOf(
+            rxJava,
+            rxJavaAndroid
+        )
+    }
 }
