@@ -3,6 +3,7 @@ package ru.apshheko.video_player_screen.presentation.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,18 +18,23 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import ru.apshheko.baseapp.di.BaseFeature
 import ru.apshheko.designsystem.ComposeActivityTheme
+import ru.apshheko.video_player_screen.data.api.RequestApi
 import ru.apshheko.video_player_screen.di.VideoPlayerScreenFeature
 import ru.apshheko.video_player_screen.domain.VideoPlayerInteractor
+import ru.apshheko.video_player_screen.presentation.viewmodel.VideoPlayerScreenViewModel
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    @set:Inject
-    var interactor: VideoPlayerInteractor? = null
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: VideoPlayerScreenViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         VideoPlayerScreenFeature.videoPlayerScreenComponent?.inject(this)
@@ -59,6 +65,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        viewModel.onCreate()
     }
 }
 

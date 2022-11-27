@@ -1,4 +1,5 @@
 import ru.apshheko.buildsrc.*
+import ru.apshheko.buildsrc.Libs.Coroutines.coroutinesDep
 import ru.apshheko.buildsrc.Libs.ExoPlayer.exoPlayerDep
 import ru.apshheko.buildsrc.Libs.Retrofit.retrofitDep
 import ru.apshheko.buildsrc.Libs.RxJava.rxJavaDep
@@ -59,7 +60,7 @@ dependencies(
         coreDep,
         exoPlayerDep,
         retrofitDep,
-        rxJavaDep
+        coroutinesDep
     ),
     testImplementations = deps(
         coreTestDep

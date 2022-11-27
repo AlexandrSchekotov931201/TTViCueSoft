@@ -9,9 +9,7 @@ object Versions {
     const val composeBom = "2022.10.00"
     const val exoPlayerVersion = "2.18.1"
     const val daggerVersion = "2.44"
-    const val retrofitVersion = "2.5.0"
-    const val retrofitConvertorGsonVersion = "2.3.0"
-    const val retrofitAdapterVersion = "2.1.0"
+    const val retrofitVersion = "2.9.0"
     const val rxjavaVersion = "2.2.2"
     const val rxjavaAndroidVersion = "2.1.1"
 

@@ -59,13 +59,11 @@ object Libs {
 
     object Retrofit {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
-        const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConvertorGsonVersion}"
-        const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava:${Versions.retrofitAdapterVersion}"
+        const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
 
         val retrofitDep = listOf(
             retrofit,
-            retrofitConverterGson,
-            retrofitAdapter
+            retrofitConverterGson
         )
     }
 
@@ -76,6 +74,16 @@ object Libs {
         val rxJavaDep = listOf(
             rxJava,
             rxJavaAndroid
+        )
+    }
+
+    object Coroutines {
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+
+        val coroutinesDep = listOf(
+            coroutinesCore,
+            coroutinesAndroid
         )
     }
 }

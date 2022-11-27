@@ -4,7 +4,6 @@ import ru.apshheko.buildsrc.Libs.coreUITestDep
 import ru.apshheko.buildsrc.dependencies
 import ru.apshheko.buildsrc.deps
 import ru.apshheko.buildsrc.Apps
-import ru.apshheko.buildsrc.Modules.videoPlayerScreen
 
 plugins {
     id("com.android.library")
@@ -42,6 +41,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = Apps.jvmTarget
+        
     }
 }
 
