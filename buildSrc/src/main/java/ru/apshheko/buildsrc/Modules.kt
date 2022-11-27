@@ -1,4 +1,4 @@
-package ru.apshheko.buildsrc.config
+package ru.apshheko.buildsrc
 
 object Modules {
     //Common

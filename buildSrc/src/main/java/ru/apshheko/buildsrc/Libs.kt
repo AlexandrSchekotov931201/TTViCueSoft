@@ -1,4 +1,4 @@
-package ru.apshheko.buildsrc.config
+package ru.apshheko.buildsrc
 
 object Libs {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
@@ -26,4 +26,21 @@ object Libs {
     val coreUITestDep = listOf(
         coreEspresso
     )
+
+    object Compose {
+        const val composeBom = "androidx.compose:compose-bom:2022.10.00"
+        const val composeMaterial = "androidx.compose.material:material"
+        const val composeUI = "androidx.compose.ui:ui"
+        const val composeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview"
+        const val composeUITooling = "androidx.compose.ui:ui-tooling"
+        const val composeActivity = "androidx.activity:activity-compose"
+
+        val composeDep = listOf(
+            composeMaterial,
+            composeUI,
+            composeUIToolingPreview,
+            composeUITooling,
+            composeActivity
+        )
+    }
 }

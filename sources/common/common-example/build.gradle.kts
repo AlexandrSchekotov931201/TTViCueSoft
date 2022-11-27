@@ -1,9 +1,9 @@
 import ru.apshheko.buildsrc.deps
-import ru.apshheko.buildsrc.config.Apps
-import ru.apshheko.buildsrc.config.Libs.coreDep
-import ru.apshheko.buildsrc.config.Libs.coreTestDep
-import ru.apshheko.buildsrc.config.Libs.coreUITestDep
+import ru.apshheko.buildsrc.Libs.coreDep
+import ru.apshheko.buildsrc.Libs.coreTestDep
+import ru.apshheko.buildsrc.Libs.coreUITestDep
 import ru.apshheko.buildsrc.dependencies
+import ru.apshheko.buildsrc.Apps
 
 plugins {
     id("com.android.library")

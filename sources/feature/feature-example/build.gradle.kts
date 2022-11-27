@@ -1,8 +1,7 @@
 import ru.apshheko.buildsrc.*
-import ru.apshheko.buildsrc.config.Apps
-import ru.apshheko.buildsrc.config.Libs.coreDep
-import ru.apshheko.buildsrc.config.Libs.coreTestDep
-import ru.apshheko.buildsrc.config.Libs.coreUITestDep
+import ru.apshheko.buildsrc.Libs.coreDep
+import ru.apshheko.buildsrc.Libs.coreTestDep
+import ru.apshheko.buildsrc.Libs.coreUITestDep
 
 plugins {
     id("com.android.library")
@@ -40,9 +39,16 @@ android {
     kotlinOptions {
         jvmTarget = Apps.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtensionVersion
+    }
 }
 
 dependencies(
+    compose = true,
     implementations = deps(
         coreDep
     ),

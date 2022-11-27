@@ -1,7 +1,8 @@
-import ru.apshheko.buildsrc.config.Apps
-import ru.apshheko.buildsrc.config.Libs.coreDep
-import ru.apshheko.buildsrc.config.Libs.coreTestDep
-import ru.apshheko.buildsrc.config.Libs.coreUITestDep
+import ru.apshheko.buildsrc.Libs.coreDep
+import ru.apshheko.buildsrc.Libs.coreTestDep
+import ru.apshheko.buildsrc.Libs.coreUITestDep
+import ru.apshheko.buildsrc.Apps
+import ru.apshheko.buildsrc.Modules.featureExample
 import ru.apshheko.buildsrc.dependencies
 import ru.apshheko.buildsrc.deps
 
@@ -60,5 +61,8 @@ dependencies(
     ),
     androidTestImplementations = deps(
         coreUITestDep
+    ),
+    modules = deps(
+        featureExample
     )
 )

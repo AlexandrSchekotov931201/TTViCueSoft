@@ -6,12 +6,17 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
 
 fun Project.dependencies(
+    compose: Boolean = false,
     implementations: List<List<String>>? = null,
     testImplementations: List<List<String>>? = null,
     androidTestImplementations: List<List<String>>? = null,
     modules: List<String>? = null
 ) {
     dependencies {
+        if (compose) {
+            implementations(listOf(platform(Libs.Compose.composeBom)))
+            implementations(Libs.Compose.composeDep)
+        }
         implementations?.forEach { implementations(it) }
         testImplementations?.forEach { testImplementations(it) }
         androidTestImplementations?.forEach { androidTestImplementations(it) }
