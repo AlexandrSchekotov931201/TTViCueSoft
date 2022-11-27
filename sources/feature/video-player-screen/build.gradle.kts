@@ -1,4 +1,5 @@
 import ru.apshheko.buildsrc.*
+import ru.apshheko.buildsrc.Libs.ExoPlayer.exoPlayerDep
 import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
@@ -51,7 +52,8 @@ android {
 dependencies(
     compose = true,
     implementations = deps(
-        coreDep
+        coreDep,
+        exoPlayerDep
     ),
     testImplementations = deps(
         coreTestDep

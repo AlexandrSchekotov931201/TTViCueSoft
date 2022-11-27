@@ -4,7 +4,6 @@ object Libs {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val androidMaterial = "com.google.android.material:material:${Versions.androidMaterialVersion}"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
 
     const val junit = "junit:junit:${Versions.junitVersion}"
     const val extJunit = "androidx.test.ext:junit:${Versions.extJunitVersion}"
@@ -13,8 +12,7 @@ object Libs {
     val coreDep = listOf(
         coreKtx,
         appCompat,
-        androidMaterial,
-        constraintlayout,
+        androidMaterial
     )
 
     val coreTestDep = listOf(
@@ -28,7 +26,7 @@ object Libs {
     )
 
     object Compose {
-        const val composeBom = "androidx.compose:compose-bom:2022.10.00"
+        const val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
         const val composeMaterial = "androidx.compose.material:material"
         const val composeUI = "androidx.compose.ui:ui"
         const val composeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview"
@@ -41,6 +39,16 @@ object Libs {
             composeUIToolingPreview,
             composeUITooling,
             composeActivity
+        )
+    }
+
+    object ExoPlayer {
+        const val exoPlayer = "com.google.android.exoplayer:exoplayer:${Versions.exoPlayer}"
+        const val exoPlayerUI = "com.google.android.exoplayer:exoplayer-ui:${Versions.exoPlayer}"
+
+        val exoPlayerDep = listOf(
+            exoPlayer,
+            exoPlayerUI
         )
     }
 }
