@@ -16,7 +16,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntSize
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.bumptech.glide.request.transition.Transition
@@ -24,22 +23,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-private const val DEFAULT_IMAGE_VALUE = -1
-
 //https://github.com/mvarnagiris/compose-glide-image/blob/master/compose-glide-image/src/main/java/com/koduok/compose/glideimage/GlideImage.kt
 @Composable
 fun GlideImage(
-        url: String,
-        modifier: Modifier = Modifier,
-        contentScale: ContentScale = ContentScale.Fit,
-        alignment: Alignment = Alignment.Center,
-        alpha: Float = DefaultAlpha,
-        defaultImage: Int = DEFAULT_IMAGE_VALUE,
-        error: Int = DEFAULT_IMAGE_VALUE,
-        colorFilter: ColorFilter? = null,
-        onImageReady: (() -> Unit)? = null,
-        customize: RequestBuilder<Bitmap>.() -> RequestBuilder<Bitmap> = { this },
-        requestOptionsType: GlideImageRequestOptionsType = GlideImageRequestOptionsType.NOT_SET
+    url: String,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.None,
+    alignment: Alignment = Alignment.Center,
+    alpha: Float = DefaultAlpha,
+    colorFilter: ColorFilter? = null,
+    onImageReady: (() -> Unit)? = null,
+    customize: RequestBuilder<Bitmap>.() -> RequestBuilder<Bitmap> = { this },
 ) {
     BoxWithConstraints {
         var image by remember { mutableStateOf<ImageBitmap?>(null) }
@@ -63,11 +57,6 @@ fun GlideImage(
                         image = resource.asImageBitmap()
                         onImageReady?.invoke()
                     }
-
-                    override fun onLoadFailed(errorDrawable: Drawable?) {
-                        super.onLoadFailed(errorDrawable)
-                        drawable = errorDrawable
-                    }
                 }
 
                 val size = constraints.run {
@@ -77,23 +66,12 @@ fun GlideImage(
                     )
                 }
 
-
                 glide
                     .asBitmap()
                     .load(url)
                     .override(size.width, size.height)
-                    .error(error)
                     .let(customize)
-                    .let { builder ->
-                        if (defaultImage != DEFAULT_IMAGE_VALUE) {
-                            builder.thumbnail(Glide.with(context).asBitmap().load(defaultImage))
-                        } else {
-                            builder
-                        }
-                    }
-                    .apply(makeRequestOptions(requestOptionsType))
                     .into(target!!)
-
             }
 
             onDispose {
@@ -105,57 +83,45 @@ fun GlideImage(
         })
 
         ActiveImage(
-                image = image,
-                drawable = drawable,
-                modifier = modifier,
-                contentScale = contentScale,
-                alignment = alignment,
-                alpha = alpha,
-                colorFilter = colorFilter
+            image = image,
+            drawable = drawable,
+            modifier = modifier,
+            contentScale = contentScale,
+            alignment = alignment,
+            alpha = alpha,
+            colorFilter = colorFilter
         )
     }
 }
 
 @Composable
 private fun ActiveImage(
-        image: ImageBitmap?,
-        drawable: Drawable?,
-        modifier: Modifier = Modifier,
-        contentDescription: String? = null,
-        contentScale: ContentScale = ContentScale.Fit,
-        alignment: Alignment = Alignment.Center,
-        alpha: Float = DefaultAlpha,
-        colorFilter: ColorFilter? = null,
+    image: ImageBitmap?,
+    drawable: Drawable?,
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    contentScale: ContentScale = ContentScale.Fit,
+    alignment: Alignment = Alignment.Center,
+    alpha: Float = DefaultAlpha,
+    colorFilter: ColorFilter? = null,
 ) {
     if (image != null) {
         Image(
-                bitmap = image,
-                contentDescription = contentDescription,
-                modifier = modifier,
-                contentScale = contentScale,
-                alignment = alignment,
-                alpha = alpha,
-                colorFilter = colorFilter
+            bitmap = image,
+            contentDescription = contentDescription,
+            modifier = modifier,
+            contentScale = contentScale,
+            alignment = alignment,
+            alpha = alpha,
+            colorFilter = colorFilter
         )
     } else if (drawable != null) {
         Canvas(
-                modifier = Modifier
-                        .fillMaxSize()
-                        .then(modifier)
+            modifier = Modifier
+                .fillMaxSize()
+                .then(modifier)
         ) {
             drawIntoCanvas { drawable.draw(it.nativeCanvas) }
         }
     }
-}
-
-private fun makeRequestOptions(type: GlideImageRequestOptionsType = GlideImageRequestOptionsType.NOT_SET): RequestOptions {
-    return when (type) {
-        GlideImageRequestOptionsType.ROUNDED_OPTION -> RequestOptions().circleCrop()
-        GlideImageRequestOptionsType.NOT_SET -> RequestOptions()
-    }
-}
-
-enum class GlideImageRequestOptionsType {
-    NOT_SET,
-    ROUNDED_OPTION
 }
