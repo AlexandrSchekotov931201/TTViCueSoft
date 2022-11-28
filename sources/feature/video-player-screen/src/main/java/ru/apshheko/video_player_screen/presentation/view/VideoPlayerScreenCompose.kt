@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import ru.apshheko.designsystem.Gray
+import ru.apshheko.designsystem.ext.dpToPx
 import ru.apshheko.designsystem.view.GlideImage
 import ru.apshheko.video_player_screen.presentation.model.VideoPlayerScreenModel
 import kotlin.math.roundToInt
@@ -38,7 +40,8 @@ fun VideoPlayerScreenView(
     var sizeVideoPlayer: IntSize? = null
     var sizeTextField: IntSize? = null
     var textField by remember { mutableStateOf("")}
-    var offsetX by remember { mutableStateOf(0f) }
+    val offSetPadding = LocalContext.current.dpToPx(8).toFloat()
+    var offsetX by remember { mutableStateOf(offSetPadding) }
     var offsetY by remember { mutableStateOf(0f) }
     var isShowTextField by remember { mutableStateOf(false) }
 
@@ -95,7 +98,7 @@ fun VideoPlayerScreenView(
                                     val maxXVideoPlayer = sizeVideoPlayer?.width ?: 0
                                     val maxYTextField = sizeTextField?.height ?: 0
                                     val maxXTextField = sizeTextField?.width ?: 0
-                                    if ((offsetX + dragAmount.x) > 0 && (offsetX + dragAmount.x) < maxXVideoPlayer - maxXTextField) {
+                                    if ((offsetX + dragAmount.x) > 0 + offSetPadding && (offsetX + dragAmount.x) < maxXVideoPlayer - maxXTextField + offSetPadding) {
                                         offsetX += dragAmount.x
                                     }
                                     if ((offsetY + dragAmount.y) > 0 && (offsetY + dragAmount.y) < maxYVideoPlayer - maxYTextField) {
