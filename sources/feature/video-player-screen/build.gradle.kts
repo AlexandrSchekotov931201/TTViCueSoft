@@ -7,6 +7,7 @@ import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
 import ru.apshheko.buildsrc.Modules.baseApp
 import ru.apshheko.buildsrc.Modules.designSystem
+import ru.apshheko.buildsrc.Modules.networkApi
 
 plugins {
     id("com.android.library")
@@ -69,6 +70,7 @@ dependencies(
     ),
     modules = deps(
         baseApp,
-        designSystem
+        designSystem,
+        networkApi
     )
 )

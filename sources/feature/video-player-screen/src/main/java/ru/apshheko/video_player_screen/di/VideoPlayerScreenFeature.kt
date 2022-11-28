@@ -4,10 +4,11 @@ import ru.apshheko.baseapp.di.AppScope
 import ru.apshheko.baseapp.di.BaseDependencies
 import ru.apshheko.baseapp.di.BaseFeature
 import ru.apshheko.baseapp.di.BaseFeatureApi
+import ru.apshheko.network_api.di.NetworkFeatureApi
 import javax.inject.Inject
 import javax.inject.Provider
 
-interface VideoPlayerScreenDependencies : BaseDependencies
+interface VideoPlayerScreenDependencies : BaseDependencies, NetworkFeatureApi
 interface VideoPlayerScreenFeatureApi : BaseFeatureApi
 
 @AppScope

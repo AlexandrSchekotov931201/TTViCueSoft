@@ -1,16 +1,14 @@
+import ru.apshheko.buildsrc.deps
 import ru.apshheko.buildsrc.Libs.coreDep
 import ru.apshheko.buildsrc.Libs.coreTestDep
 import ru.apshheko.buildsrc.Libs.coreUITestDep
-import ru.apshheko.buildsrc.Apps
-import ru.apshheko.buildsrc.Modules.baseApp
-import ru.apshheko.buildsrc.Modules.networkApi
-import ru.apshheko.buildsrc.Modules.networkImpl
-import ru.apshheko.buildsrc.Modules.videoPlayerScreen
 import ru.apshheko.buildsrc.dependencies
-import ru.apshheko.buildsrc.deps
+import ru.apshheko.buildsrc.Apps
+import ru.apshheko.buildsrc.Libs.Retrofit.retrofitDep
+import ru.apshheko.buildsrc.Modules.baseApp
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
 }
@@ -21,17 +19,14 @@ repositories {
 }
 
 android {
-
     compileSdk = Apps.compileSdk
 
     defaultConfig {
-        applicationId = Apps.applicationId
         minSdk = Apps.minSdk
         targetSdk = Apps.targetSdk
-        versionCode = Apps.versionCode
-        versionName = Apps.versionName
 
         testInstrumentationRunner = Apps.testInstrumentationRunner
+        consumerProguardFiles(Apps.consumerRules)
     }
 
     buildTypes {
@@ -49,16 +44,12 @@ android {
     kotlinOptions {
         jvmTarget = Apps.jvmTarget
     }
-    packagingOptions {
-        resources {
-            excludes += Apps.packagingOptionsExcludes
-        }
-    }
 }
 
 dependencies(
     implementations = deps(
-        coreDep
+        coreDep,
+        retrofitDep
     ),
     testImplementations = deps(
         coreTestDep
@@ -67,9 +58,6 @@ dependencies(
         coreUITestDep
     ),
     modules = deps(
-        baseApp,
-        videoPlayerScreen,
-        networkImpl,
-        networkApi
+        baseApp
     )
 )

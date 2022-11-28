@@ -1,4 +1,4 @@
-package ru.apshheko.video_player_screen.data.api.response
+package ru.apshheko.network_api.api.response
 
 import com.google.gson.annotations.SerializedName
 

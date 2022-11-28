@@ -37,3 +37,5 @@ fun initModules(sourceDir: File, depth: Int) {
 fun isGradleProject(file: File): Boolean {
     return file.isDirectory && (file("${file.absolutePath}/build.gradle.kts").exists() || file("${file.absolutePath}/build.gradle").exists())
 }
+include(":network-impl")
+include(":network-api")
