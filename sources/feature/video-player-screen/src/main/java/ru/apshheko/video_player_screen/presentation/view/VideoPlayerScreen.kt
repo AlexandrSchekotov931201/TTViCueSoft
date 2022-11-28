@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import ru.apshheko.designsystem.ComposeActivityTheme
 import ru.apshheko.video_player_screen.di.VideoPlayerScreenFeature
-import ru.apshheko.video_player_screen.presentation.state.UiEffect
 import ru.apshheko.video_player_screen.presentation.state.UiState
 import ru.apshheko.video_player_screen.presentation.viewmodel.VideoPlayerScreenViewModel
 import javax.inject.Inject
